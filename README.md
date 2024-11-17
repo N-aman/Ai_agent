@@ -96,7 +96,7 @@ If you wish to store the generated queries in Redis (this step is optional):
 
 ### Part 2: Running the Application
 
-```markdown
+
 ## Running the Application
 
 1. Start the Flask application by running:
@@ -109,7 +109,7 @@ If you wish to store the generated queries in Redis (this step is optional):
 
 ### Part 3: User Guide
 
-```markdown
+
 ## User Guide
 
 ### 1. Home Page (`/`)
