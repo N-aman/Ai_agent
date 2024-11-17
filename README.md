@@ -1,3 +1,4 @@
+
 # AI Agent Data Extraction and Query Generation
 
 This project allows users to upload data from a CSV file or Google Sheets and generate custom queries for analyzing the data. The application extracts specific information from the data based on user-defined templates, and presents the results with options for further actions like downloading CSVs or processing the extracted data.
@@ -25,32 +26,37 @@ Before running the project, ensure that you have the following installed on your
 
    ```bash
    git clone https://github.com/N-aman/Ai_agent.git
+   ```
 
 2. Navigate into the project directory:
 
-    ```bash
-    cd Ai_agent
+   ```bash
+   cd Ai_agent
+   ```
 
 3. Create and activate a virtual environment (optional but recommended):
 
-On macOS/Linux:
+   On macOS/Linux:
 
-    ```bash
-    python -m venv venv
-    source venv/bin/activate
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   ```
 
-On Windows:
+   On Windows:
 
-    ```bash
-    python -m venv venv
-    venv\Scripts\activate
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate
+   ```
 
 4. Install the required dependencies:
 
    ```bash
    pip install -r requirements.txt
+   ```
 
-##Set Up Google Sheets API
+## Set Up Google Sheets API
 
 1. Create a project in the Google Developers Console.
 2. Enable the Google Sheets API for your project.
@@ -58,12 +64,11 @@ On Windows:
 4. Place credentials.json in the root directory of your project.
 5. Make sure the Google Sheet you're accessing is shared with the email associated with the credentials.
 
-##Set Up Redis
+## Set Up Redis
 If you wish to store the generated queries in Redis (this step is optional):
 
-Install and run Redis on your local machine.
-Ensure that Redis is running on the default port 6380 (or configure it accordingly in the code).
-
+1. Install and run Redis on your local machine.
+2. Ensure that Redis is running on the default port 6380 (or configure it accordingly in the code).
 
 ### Part 2: Running the Application
 
@@ -74,10 +79,9 @@ Ensure that Redis is running on the default port 6380 (or configure it according
 
    ```bash
    python app.py
+   ```
 
 2. The app will be available at http://127.0.0.1:5000 in your browser.
-
-
 
 ### Part 3: User Guide
 
@@ -133,7 +137,6 @@ After generating the queries, you will be shown the extraction results. Each row
 
 You can download the extracted data as a CSV file by clicking the **Download CSV** button on the extraction results page.
 
-
 ## Troubleshooting
 
 ### Error: `ConnectionError` or `Unable to fetch data from Google Sheets`
@@ -145,10 +148,3 @@ You can download the extracted data as a CSV file by clicking the **Download CSV
 
 - **Cause**: The application cannot find the `credentials.json` file.
 - **Solution**: Make sure the `credentials.json` file is located in the root directory of your project.
-
-### Error: `Failed to Push to GitHub`
-
-- **Cause**: This could happen if there are local changes that conflict with the remote repository.
-- **Solution**: Run `git pull --rebase` to resolve the conflicts before pushing.
-
-
