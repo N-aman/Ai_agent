@@ -56,6 +56,30 @@ Before running the project, ensure that you have the following installed on your
    pip install -r requirements.txt
    ```
 
+### Create `api_keys.json`
+
+To use this project, you need API keys for the following services:
+
+- SerpAPI
+- GroqAPI
+- WebScrapingAPI
+
+Create a JSON file named `api_keys.json` in the root directory of the project.
+
+Use the following format for the file:
+
+```json
+{
+  "serpapi": "YOUR_SERPAPI_KEY",
+  "groqapi": "YOUR_GROQAPI_KEY",
+  "webscrapingapi": "YOUR_WEBSCRAPINGAPI_KEY"
+}
+```
+
+Replace `"YOUR_SERPAPI_KEY"`, `"YOUR_GROQAPI_KEY"`, and `"YOUR_WEBSCRAPINGAPI_KEY"` with your actual API keys for each service.
+
+Save the file as `api_keys.json` and place it in the root directory of the project.
+
 ## Set Up Google Sheets API
 
 1. Create a project in the Google Developers Console.
@@ -72,6 +96,7 @@ If you wish to store the generated queries in Redis (this step is optional):
 
 ### Part 2: Running the Application
 
+```markdown
 ## Running the Application
 
 1. Start the Flask application by running:
@@ -84,6 +109,7 @@ If you wish to store the generated queries in Redis (this step is optional):
 
 ### Part 3: User Guide
 
+```markdown
 ## User Guide
 
 ### 1. Home Page (`/`)
