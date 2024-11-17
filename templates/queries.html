@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Queries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .query-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .btn-group {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center section-title">Generated Queries</h1>
+        <hr>
+
+        {% if queries %}
+            <div class="query-list">
+                <ul class="list-group">
+                    {% for query in queries %}
+                        <li class="list-group-item">{{ query }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="mt-4">
+                <form action="{{ url_for('web_search') }}" method="post">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-success w-100">Search with SerpAPI</button>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <p class="text-center mt-4">No queries generated.</p>
+        {% endif %}
+
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('home') }}" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

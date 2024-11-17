@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Search Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .query-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .list-group-item a {
+            font-weight: 600;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .list-group-item a:hover {
+            text-decoration: underline;
+        }
+
+        .list-group-item p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .btn-group {
+            width: 100%;
+        }
+
+        .btn-back {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .section-container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container section-container">
+        <h1 class="text-center section-title">Web Search Results</h1>
+        <hr>
+        
+        {% for query, results in results.items() %}
+            <div class="query-section">
+                <h3 class="query-title">{{ query }}</h3>
+                <ul class="list-group">
+                    {% for result in results %}
+                        <li class="list-group-item">
+                            <a href="{{ result.link }}" target="_blank">{{ result.title }}</a>
+                            <p>{{ result.snippet }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+
+        <!-- Extract Info Form -->
+        <form action="{{ url_for('extract_info') }}" method="POST" class="mt-4">
+            <!-- Multiple hidden inputs to pass each query -->
+            {% for query in results.keys() %}
+                <input type="hidden" name="queries" value="{{ query }}">
+            {% endfor %}
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success w-100">Extract Info for All Queries</button>
+            </div>
+        </form>
+
+        <div class="mt-4">
+            <a href="{{ url_for('home') }}" class="btn btn-primary btn-back">Go Back</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<h2>Select a Google Sheet</h2>
+<form method="post" action="/select_sheet">
+    <ul>
+        {% for sheet in sheets %}
+        <li>
+            <button type="submit" name="sheet_id" value="{{ sheet.id }}">{{ sheet.name }}</button>
+        </li>
+        {% endfor %}
+    </ul>
+</form>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Upload and Query Generation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-primary,
+        .btn-success,
+        .btn-secondary {
+            border-radius: 25px;
+            font-weight: 600;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .table {
+            margin-top: 30px;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .table-responsive {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* Styling for alternating row colors */
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+        .table th,
+        .table td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .table td {
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="text-center mb-5">
+            <h1 class="section-title">Data Upload and Query Generation</h1>
+            <p>Upload a CSV file or load data from Google Sheets and generate queries to analyze the data.</p>
+        </div>
+
+        <!-- CSV Upload Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Step 1: Upload CSV File</h4>
+            </div>
+            <div class="card-body">
+                <form action="/" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Choose a CSV File</label>
+                        <input class="form-control" type="file" id="file" name="file" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload and Preview</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Google Sheets URL Input Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Step 1b: Load Data from Google Sheets</h4>
+            </div>
+            <div class="card-body text-center">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="google_sheet_url" class="form-label">Enter Google Sheets URL</label>
+                        <input class="form-control" type="text" name="google_sheet_url" id="google_sheet_url"
+                               placeholder="Enter Google Sheets URL" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Load Data</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Display Table Section (CSV or Google Sheets) -->
+        {% if csv_data %}
+            <div class="mt-5">
+                <h3 class="section-title">Preview of Uploaded CSV Data</h3>
+                <div class="table-responsive">
+                    <!-- Displaying CSV Data -->
+                    {{ csv_data | safe }}
+                </div>
+            </div>
+        {% elif sheet_data %}
+            <div class="mt-5">
+                <h3 class="section-title">Preview of Loaded Google Sheets Data</h3>
+                <div class="table-responsive">
+                    <!-- Displaying Google Sheets Data -->
+                    {{ sheet_data | safe }}
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Query Input Section -->
+        {% if csv_data or sheet_data %}
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h4>Step 2: Generate Custom Queries</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/process_query" method="post">
+                        <div class="mb-3">
+                            <label for="customPrompt" class="form-label">Custom Query Template</label>
+                            <input type="text" class="form-control" id="customPrompt" name="custom_prompt"
+                                placeholder="e.g., Get the average salary of {Job_Title} in {Location}" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Generate Queries</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Display Generated Queries -->
+        {% if results %}
+            <div class="mt-5">
+                <h3 class="section-title">Generated Queries</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Generated Queries</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for query in results %}
+                                <tr>
+                                    <td>{{ query }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

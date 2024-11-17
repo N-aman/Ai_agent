@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processed Extraction Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        .key-value-pairs {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .key-value-pairs li {
+            padding: 5px 0;
+        }
+
+        .key {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .action-buttons a {
+            width: 100%;
+        }
+
+        .btn-back {
+            width: 48%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="section-title text-center mb-4">Processed Extraction Results</h2>
+
+        {% if results %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Query</th>
+                            <th>Extracted Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td>{{ result.query }}</td>
+                                <td>
+                                    <ul class="key-value-pairs">
+                                        {% for key, value in result.extracted_info.items() %}
+                                            <li><span class="key">{{ key }}:</span> {{ value }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Action Buttons for Download and Update Google Sheet -->
+            <div class="action-buttons mt-3">
+                <a href="{{ url_for('download_csv') }}" class="btn btn-primary">Download CSV</a>
+            </div>
+
+        {% else %}
+            <p>No processed extraction results available.</p>
+        {% endif %}
+
+        <!-- Button to navigate to the next page -->
+        <div class="mt-4">
+            <a href="{{ url_for('processed_labels_page') }}" class="btn btn-info w-100">Go to Processed Labels</a> <!-- New Button to Go to Next Page -->
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
