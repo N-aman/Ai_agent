@@ -225,6 +225,8 @@ This approach ensures your secret key remains secure and is not exposed in your 
 
 2. The app will be available at http://127.0.0.1:5000 in your browser.
 
+---
+
 ### Part 3: User Guide
 
 
