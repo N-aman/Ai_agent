@@ -130,10 +130,69 @@ By following these steps, you will have successfully configured access to the Go
 
 
 ## Set Up Redis
-If you wish to store the generated queries in Redis :
 
-1. Install and run Redis on your local machine.
-2. Ensure that Redis is running on the default port 6380 (or configure it accordingly in the code).
+1. Install and run Redis on your local machine. You can follow the [official Redis installation guide](https://redis.io/docs/getting-started/installation/) for your operating system.
+2. Ensure that Redis is running on the port `6380` (or configure it accordingly in the code).
+
+---
+
+## Set Up Flask Secret Key
+Flask requires a secret key for securely signing session cookies and other sensitive information. Follow these steps to create and add a Flask secret key to your project:
+
+### Step 1: Generate a Secret Key
+A Flask secret key can be any random string. You can generate a strong random key in Python using the `secrets` module:
+
+1. Open a Python shell or a script.
+2. Run the following command:
+
+   ```python
+   import secrets
+   print(secrets.token_hex(24))
+   ```
+
+   This will output a secure random key, such as:
+
+   ```
+   ead32f9b0b6842a593ffecb3f1b1e5c042a17e65cfd28321
+   ```
+
+### Step 2: Add the Secret Key to `app.py`
+1. Open your `app.py` file.
+2. Locate or add the section where you configure Flask.
+3. Add the following line, replacing `<your_secret_key>` with the key you generated:
+
+   ```python
+   app.secret_key = '<your_secret_key>'
+   ```
+
+   For example:
+
+   ```python
+   app.secret_key = 'ead32f9b0b6842a593ffecb3f1b1e5c042a17e65cfd28321'
+   ```
+
+### Step 3: (Optional) Store the Secret Key in a Secure Location
+For added security, you can store the secret key in an environment variable instead of hardcoding it in your code. Here’s how:
+
+1. Set the environment variable (example for Windows):
+   ```bash
+   set FLASK_SECRET_KEY=ead32f9b0b6842a593ffecb3f1b1e5c042a17e65cfd28321
+   ```
+
+   For macOS/Linux:
+   ```bash
+   export FLASK_SECRET_KEY=ead32f9b0b6842a593ffecb3f1b1e5c042a17e65cfd28321
+   ```
+
+2. Update `app.py` to load the key from the environment variable:
+
+   ```python
+   import os
+   app.secret_key = os.getenv('FLASK_SECRET_KEY', 'default_key_if_not_set')
+   ```
+
+This approach ensures your secret key remains secure and is not exposed in your codebase.
+
 
 ### Part 2: Running the Application
 
