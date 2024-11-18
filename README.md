@@ -29,7 +29,7 @@ This streamlined process transforms raw data into actionable insights with minim
 ---
 
 ### Video Demonstration  
-Check out this short video demonstration of the project in action: [Project Video Demonstration](#).  
+Check out this short video demonstration of the project in action: [Project Video Demonstration](https://youtu.be/QnCZAevZalQ).  
 
 ---
 
