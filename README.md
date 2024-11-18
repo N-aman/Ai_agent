@@ -1,19 +1,37 @@
 
-# AI Agent Data Extraction and Query Generation
+# AI Agent Data Extraction and Query Generation  
 
-This project enables users to upload data from a CSV file or Google Sheets and create custom queries to analyze and extract meaningful insights. By leveraging user-defined templates, the application generates queries tailored to the uploaded data.
+This project empowers users to upload data from a **CSV file** or **Google Sheets** and create custom queries to analyze and extract meaningful insights. By leveraging user-defined templates, the application generates queries specifically tailored to the uploaded data.  
 
-The application performs web searches based on these queries, retrieves relevant results, and uses a powerful language model (LLM) to parse and extract the most accurate and useful information from the web results. The extracted insights are then presented in an organized format, along with options for further processing, downloading CSVs, or refining the results for deeper analysis.
+The application performs web searches based on these queries, retrieves relevant results, and uses a powerful language model (LLM) to parse and extract the most accurate and useful information from the web results. The extracted insights are then presented in an organized format, along with options for further processing, downloading CSVs, or refining the results for deeper analysis.  
 
-This streamlined process allows users to transform raw data into actionable insights with minimal effort.
+This streamlined process transforms raw data into actionable insights with minimal effort, saving time and boosting productivity.  
 
-## Features
+---
 
-- **Upload CSV files**: Allows users to upload CSV files and preview their data.
-- **Google Sheets integration**: Fetch data directly from a Google Sheets URL and preview it.
-- **Custom query generation**: Users can generate custom search queries using data from the CSV or Google Sheets.
-- **Extraction results**: After querying, the results are displayed with options to download them as CSV or process the data.
-- **Responsive UI**: A clean and simple interface for easy navigation.
+## Features  
+
+- **Custom Query Generation:**  
+  Create precise, user-defined queries for analyzing uploaded datasets.  
+
+- **Web Search Integration:**  
+  The application performs web searches based on the queries and retrieves relevant results.  
+
+- **LLM-Powered Insight Extraction:**  
+  Extract the most accurate and useful information from web results using a powerful language model.  
+
+- **Organized Output:**  
+  Present insights in a structured format, with options for further processing or downloading as CSVs.  
+
+- **Deeper Analysis Tools:**  
+  Refine the results and explore more advanced insights for a thorough understanding of the data.  
+
+---
+
+### Video Demonstration  
+Check out this short video demonstration of the project in action: [Project Video Demonstration](#).  
+
+---
 
 ## Requirements
 
