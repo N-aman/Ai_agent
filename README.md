@@ -80,13 +80,50 @@ Replace `"YOUR_SERPAPI_KEY"`, `"YOUR_GROQAPI_KEY"`, and `"YOUR_WEBSCRAPINGAPI_KE
 
 Save the file as `api_keys.json` and place it in the root directory of the project.
 
-## Set Up Google Sheets API
+### Set Up Google Sheets API
 
-1. Create a project in the Google Developers Console.
-2. Enable the Google Sheets API for your project.
-3. Download the credentials JSON file and name it credentials.json.
-4. Place credentials.json in the root directory of your project.
-5. Make sure the Google Sheet you're accessing is shared with the email associated with the credentials.
+To use this project with Google Sheets, you need to set up access to the Google Sheets API. Follow these detailed steps:
+
+1. **Create a Google Cloud Project**:
+   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
+   - Log in with your Google account if not already logged in.
+   - Click on **"Select a Project"** (top-left) and then click **"New Project"**.
+   - Give your project a name (e.g., "AI Agent Project") and click **"Create"**.
+   - Wait for the project to be created, then select it from the project list.
+
+2. **Enable the Google Sheets API**:
+   - While in your project, go to the **API & Services** > **Library** in the left-hand menu.
+   - Search for **Google Sheets API** in the search bar.
+   - Click on **Google Sheets API** from the results and then click the **"Enable"** button.
+
+3. **Create Service Account Credentials**:
+   - Navigate to **API & Services** > **Credentials** from the left-hand menu.
+   - Click on the **"Create Credentials"** button at the top and select **Service Account**.
+   - Provide a name for your service account (e.g., "AI Agent Service Account") and click **"Create and Continue"**.
+   - Assign a role to the service account. Select **Basic** > **Editor**, then click **Continue** and **Done**.
+
+4. **Generate a Credentials File**:
+   - In the **Credentials** page, find the service account you just created.
+   - Click on the **pencil icon** next to your service account to edit it.
+   - Navigate to the **Keys** tab and click **"Add Key"**, then select **JSON**.
+   - A JSON file containing your credentials will be downloaded. Rename this file to `credentials.json`.
+
+5. **Place `credentials.json` in the Project**:
+   - Move the downloaded `credentials.json` file into the root directory of your project.
+   - Ensure that this file is included only in your local environment. (It is excluded by default if you followed the `.gitignore` setup.)
+
+6. **Share Your Google Sheet with the Service Account**:
+   - Open the Google Sheet you want to work with.
+   - Click on the **Share** button in the top-right corner.
+   - Copy the **Service Account Email** (visible in the `credentials.json` file under `"client_email"`) and paste it into the "Add people and groups" field in the sharing dialog.
+   - Assign **Editor** access to the service account and click **Send**.
+
+7. **Verify the Setup**:
+   - Ensure that `credentials.json` exists in your project directory and is correctly configured.
+   - The Google Sheet you are accessing should now be shared with your service account, allowing the application to read or write data to it.
+
+By following these steps, you will have successfully configured access to the Google Sheets API for your project.
+
 
 ## Set Up Redis
 If you wish to store the generated queries in Redis (this step is optional):
