@@ -23,7 +23,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
 
 # Path to your Google API credentials JSON file
-GOOGLE_CLIENT_SECRETS_FILE = "client_secretid.json"
+#GOOGLE_CLIENT_SECRETS_FILE = "client_secretid.json"
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/spreadsheets.readonly']
 
 HEET_ID = None
@@ -37,9 +37,7 @@ app.config['SESSION_COOKIE_NAME'] = 'your_session_cookie'
 app.config['SESSION_REDIS'] = redis.StrictRedis(host='localhost', port=6380, db=0)  # Adjust Redis config as necessary
 Session(app)  # Initialize session
 
-app.secret_key = '4cda863f240980fc223d5e175102aded47f795830ab51a4c'  # Replace with a secure key for session management
-SERP_API_KEY = '385bd42444fdd5debafd78813f2da603b1c1b28b078632480e55f2c8ef536f6c'  # Replace with your actual key
-
+app.secret_key = 'your_flask_secret_key'  # Replace with a secure key for session management
 
 # Load the API keys from the JSON file
 with open("api_keys.json", "r") as file:
