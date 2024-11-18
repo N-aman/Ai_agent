@@ -1,7 +1,11 @@
 
 # AI Agent Data Extraction and Query Generation
 
-This project allows users to upload data from a CSV file or Google Sheets and generate custom queries for analyzing the data. The application extracts specific information from the data based on user-defined templates, and presents the results with options for further actions like downloading CSVs or processing the extracted data.
+This project enables users to upload data from a CSV file or Google Sheets and create custom queries to analyze and extract meaningful insights. By leveraging user-defined templates, the application generates queries tailored to the uploaded data.
+
+The application performs web searches based on these queries, retrieves relevant results, and uses a powerful language model (LLM) to parse and extract the most accurate and useful information from the web results. The extracted insights are then presented in an organized format, along with options for further processing, downloading CSVs, or refining the results for deeper analysis.
+
+This streamlined process allows users to transform raw data into actionable insights with minimal effort.
 
 ## Features
 
@@ -177,26 +181,31 @@ After uploading the CSV or loading data from Google Sheets, you will see the opt
 
 1. **Custom Query Template**: In the input field, enter a query template with placeholders for the data columns (e.g., `Get the average salary of {Job_Title} in {Location}`). The placeholders should match the column names from your data.
    
-2. **Generate Queries**: Once the template is provided, click **Generate Queries** to create the queries based on the data in the CSV or Google Sheets.
+2. **Generate Custom Queries (/process_query)**  
+   - After uploading the CSV or loading data from Google Sheets, you will see the option to **Generate Custom Queries**.  
+   - **Custom Query Template**: Enter a query template with placeholders for the data columns (e.g., *Get the average salary of {Job_Title} in {Location}*). The placeholders should exactly match the column names from your data.  
+   - **Generate Queries**: Once the template is provided, click **Generate Queries** to create queries based on the data in the CSV or Google Sheets.  
+   - The generated queries will be displayed on the next page for confirmation.  
 
-3. The generated queries will be displayed on the next page.
+3. **Search Results Display**  
+   - After the queries are generated, the application performs searches using the queries.  
+   - The **Search Results Page** displays the web results retrieved for each query.  
+   - These results are shown so you can see the context of the data being extracted.  
 
-### 3. Extraction Results (`/extraction_results`)
+4. **Extraction Results (Using LLM and Groq API)**  
+   - After reviewing the search results, the application uses **Groq API** to parse the web results and extract the most relevant information based on the query.  
+   - You are then directed to the **Extraction Results Page**, which shows:  
+     - **Entity (Query)**: The original query.  
+     - **URL**: A clickable link to the source (if applicable).  
+     - **Extracted Information**: The processed data derived from the web results using the LLM.  
+   - Available Actions:  
+     - **Download CSV**: Download the extracted information as a CSV file for further use.  
+     - **Go to Processed Data**: Navigate to the next step where you can process the extracted data further.  
 
-After generating the queries, you will be shown the extraction results. Each row will have the following information:
+5. **Further Process Results (/process_extracted_info_json)**  
+   - On the **Processed Data Page**, you can refine and work with the extracted information.  
+   - This page also provides an option to **Download the Final Processed Data** as a CSV file for your records or further analysis.  
 
-- **Entity (Query)**: The query that was generated.
-- **URL**: A clickable link to the source (if applicable).
-- **Extracted Information**: The data that was extracted based on the query.
-
-#### Available Actions:
-
-- **Download CSV**: Download the extracted information as a CSV file for further use.
-- **Go to Processed Data**: Navigate to a page where you can process the extracted data further.
-
-### 4. Download CSV (`/download_csv`)
-
-You can download the extracted data as a CSV file by clicking the **Download CSV** button on the extraction results page.
 
 ## Troubleshooting
 
