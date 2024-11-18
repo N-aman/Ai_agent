@@ -126,7 +126,7 @@ By following these steps, you will have successfully configured access to the Go
 
 
 ## Set Up Redis
-If you wish to store the generated queries in Redis (this step is optional):
+If you wish to store the generated queries in Redis :
 
 1. Install and run Redis on your local machine.
 2. Ensure that Redis is running on the default port 6380 (or configure it accordingly in the code).
